@@ -46,7 +46,7 @@ class PHYSICS(dense_design_matrix.DenseDesignMatrix):
             ntrain = 10000000 
             nvalid = 500000 
             ntest  = 500000
-        elif bechmark == 2:
+        elif benchmark == 2:
             # SUSY
             ntrain = 4000000 
             nvalid = 500000 
@@ -92,7 +92,7 @@ class PHYSICS(dense_design_matrix.DenseDesignMatrix):
             rng.shuffle(indices)
             X = X[indices, :]
             y = y[indices, :]
-   
+
         # Limit number of samples.
         stop = min(stop, X.shape[0])
         X = X[start:stop, :]
@@ -107,7 +107,7 @@ class PHYSICS(dense_design_matrix.DenseDesignMatrix):
         1) If data contains negative values, we assume its either normally or uniformly distributed, center, and standardize.
         2) elseif data has large values, we set mean to 1.
         """
-        
+
         for j in range(X.shape[1]):
             vec = X[:, j]
             if np.min(vec) < 0:
@@ -119,7 +119,3 @@ class PHYSICS(dense_design_matrix.DenseDesignMatrix):
                 vec = vec / np.mean(vec)
             X[:,j] = vec
         return X
-
-
-
-
